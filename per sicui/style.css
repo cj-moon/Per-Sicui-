@@ -1,0 +1,377 @@
+/* ==========================================
+   1. BASE & BACKGROUND
+   ========================================== */
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: url("https://i.pinimg.com/1200x/04/1a/83/041a833ddca20dc816004cddb36e624b.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Overlay leggero per leggere meglio i testi */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+/* ==========================================
+   2. LOADER (Effetto Cuore)
+   ========================================== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: #3e2c23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease, visibility 1s;
+}
+
+.loader-open {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.heart-main {
+    width: 60px;
+    height: 60px;
+    background: #8e5d3e;
+    transform: rotate(-45deg);
+    position: relative;
+    animation: pulse 1.5s infinite;
+}
+
+.heart-main::before, .heart-main::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.heart-main::before { top: -30px; left: 0; }
+.heart-main::after { left: 30px; top: 0; }
+
+@keyframes pulse {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.15); }
+}
+
+/* ==========================================
+   3. TITOLI & GIF
+   ========================================== */
+#mainGif {
+    width: 140px;
+    border-radius: 20px;
+    border: 4px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    color: #fffaf0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    margin: 10px 0;
+}
+
+/* Testo con Glow (usato dopo il Yes o negli overlay) */
+.glow-text {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff88aa, 0 0 30px #ff88aa !important;
+}
+
+/* /* ==========================================
+   BOTTONI A NUVOLETTA (VANILLA STYLE)
+   ========================================== */
+#buttons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 40px; 
+    margin-top: 30px; 
+    position: relative; 
+    z-index: 20; 
+}
+
+button {
+    position: relative;
+    padding: 20px 50px; 
+    border: none; 
+    cursor: pointer;
+    background: #fffaf0; /* Colore Vanilla */
+    color: #8e5d3e; 
+    border-radius: 50px; /* Base tonda */
+    font-weight: bold; 
+    font-size: 24px;
+    box-shadow: 0 10px 0px rgba(227, 213, 200, 0.3); /* Ombra morbida */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Le "gobbe" della nuvola */
+button::before, button::after {
+    content: "";
+    position: absolute;
+    background: inherit; /* Prende lo stesso colore del bottone */
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Gobba sinistra */
+button::before {
+    width: 45px; 
+    height: 45px;
+    top: -15px; 
+    left: 15px;
+}
+
+/* Gobba destra */
+button::after {
+    width: 50px; 
+    height: 50px;
+    top: -20px; 
+    right: 15px;
+}
+
+/* Bottone NO (leggermente più scuro per contrasto, ma sempre nuvola) */
+#noBtn {
+    background: #e3d5c8; 
+    color: #5e4433;
+}
+
+#yesBtn:hover, #noBtn:hover {
+    transform: scale(1.1);
+}
+
+.pulsing-yes {
+    animation: heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* Complimenti che appaiono al click */
+.click-text {
+    position: fixed;
+    pointer-events: none;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    z-index: 10000;
+    text-shadow: 0 0 5px #8e5d3e;
+    animation: fadeUp 1.5s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(0); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* ==========================================
+   5. SEZIONE REGALI (Gifts)
+   ========================================== */
+#gifts-section {
+    display: none;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.gift-box {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gift-box:hover {
+    transform: scale(1.15);
+}
+
+.kitten-img {
+    width: 85px;
+    border-radius: 15px;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ==========================================
+   6. SLOT MACHINE & MUCCA (Cow)
+   ========================================== */
+.slot-machine {
+    background: #fdf5e6;
+    padding: 30px;
+    border-radius: 30px;
+    border: 6px solid #8e5d3e;
+    position: relative;
+    margin-top: 90px; /* Spazio per la mucca sopra */
+    box-shadow: 0 15px 0 #5e4433;
+}
+
+.slot-cat {
+    position: absolute;
+    top: -75px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85px;
+    z-index: 100;
+    filter: drop-shadow(0 0 10px white);
+}
+
+.slots {
+    display: flex;
+    gap: 12px;
+    background: #3e2c23;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.slot {
+    width: 65px;
+    height: 90px;
+    background: linear-gradient(to bottom, #fff, #f0f0f0, #fff);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+.spinning {
+    animation: slotSpin 0.1s infinite linear;
+}
+
+@keyframes slotSpin {
+    0% { transform: translateY(-5px); filter: blur(1px); }
+    100% { transform: translateY(5px); filter: blur(1px); }
+}
+
+/* Leva della slot */
+.lever-container {
+    position: absolute;
+    right: -50px;
+    top: 40px;
+    cursor: pointer;
+}
+
+.lever-base { width: 15px; height: 80px; background: #8e5d3e; border-radius: 10px; }
+.lever-arm {
+    width: 8px; height: 60px; background: #bc9a7a;
+    position: absolute; left: 4px; bottom: 10px;
+    transform-origin: bottom center; transition: 0.3s;
+}
+.lever-ball { width: 30px; height: 30px; background: #d44d5c; border-radius: 50%; position: absolute; top: -25px; left: -11px; }
+.lever-arm.pulled { transform: rotateX(160deg); }
+
+/* ==========================================
+   7. OGGETTI CADENTI (Bianchi + Glow)
+   ========================================== */
+.falling-item {
+    position: fixed;
+    top: -50px;
+    pointer-events: none;
+    z-index: 5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fallAnim linear infinite;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px white);
+}
+
+@keyframes fallAnim {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* ==========================================
+   8. OVERLAY (Gift Popup)
+   ========================================== */
+#gift-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(62, 44, 35, 0.9);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.overlay-content {
+    background: #fffaf0;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    max-width: 85%;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.box-caramello {
+    background-color: rgba(142, 93, 62, 0.15);
+    border: 2px solid #8e5d3e;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.back-btn {
+    background: #8e5d3e;
+    color: white;
+    margin-top: 25px;
+    font-size: 16px;
+    padding: 10px 30px;
+}
+
+/* Lettera stile pergamena */
+.letter-container {
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    color: #5e4433;
+    line-height: 1.5;
+}
+.heart-explosion {
+    position: fixed;
+    pointer-events: none;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+    z-index: 10000;
+    font-size: 25px;
+}
+/* Animazione Dispersione Jackpot */
+.explosion-item {
+    position: fixed;
+    pointer-events: none;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 10000;
+    white-space: nowrap;
+    animation: explodeAnim 2s ease-out forwards;
+}
+
+@keyframes explodeAnim {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        /* Usa le variabili definite nel JS */
+        transform: translate(var(--x), var(--y)) rotate(var(--r));
+        opacity: 0;
+    }
+}

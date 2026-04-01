@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per Te 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="youtube-player" style="position: absolute; top: -9999px; left: -9999px;"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<div id="music-player" style="position:absolute; top:-9999px; left:-9999px;">
+    <div id="player"></div>
+</div>
+
+<div id="loader">
+    <div class="heart-main"></div>
+</div>
+
+<div class="main-content">
+    <div class="header-group">
+        <img id="mainGif" src="https://media.tenor.com/dTkq2FK0nMcAAAAj/heart-love.gif" alt="Cute GIF">
+        <h1 id="title">Do u see a future together? 🌙</h1>
+    </div>
+
+    <div id="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <div id="gifts-section" style="display: none;">
+        <div class="gift-box" onclick="openGift('letter')">
+            <img src="https://i.pinimg.com/originals/42/25/6d/42256d742cb0e1a39c013dedaf46700a.jpg" class="kitten-img">
+        </div>
+        <div class="gift-box" onclick="openGift('video')">
+            <img src="https://i.pinimg.com/564x/ce/1f/a9/ce1fa9caabfd053b392ef0217ca72e3e.jpg" class="kitten-img">
+        </div>
+        <div class="gift-box" onclick="openGift('surprise')">
+            <img src="https://i.pinimg.com/736x/88/3c/20/883c209c98165fbc8877e1a4548df9be.jpg" class="kitten-img">
+        </div>
+    </div>
+</div>
+
+<div id="gift-overlay">
+    <div class="overlay-content">
+        <div id="display-area"></div>
+        <button class="back-btn" onclick="closeGift()">Back</button>
+    </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
